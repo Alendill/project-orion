@@ -2,7 +2,6 @@ package orion.transfer.core.common;
 
 import org.apache.commons.lang3.StringUtils;
 import orion.transfer.core.exception.DownloadLinkException;
-import orion.transfer.core.info.DownloadLinkInfo;
 import orion.transfer.core.info.FtpLinkInfo;
 import orion.transfer.core.info.HttpLinkInfo;
 
@@ -30,21 +29,18 @@ public class DownloadLinkParser {
         return instance;
     }
 
-    public DownloadLinkInfo protocolSeparate(String url) throws DownloadLinkException {
+    public Object protocolSeparate(String url) throws DownloadLinkException {
         if (StringUtils.isEmpty(url)) {
             throw new DownloadLinkException("Download url can not be null/empty!");
         }
-        DownloadLinkInfo downloadLinkInfo = null;
         String[] split = url.split("://");
         switch (split[0]) {
             case PREFIX_FTP:
-                downloadLinkInfo = parseFtp(split[1]);
-                break;
+                return parseFtp(split[1]); //TODO 这里设计有问题
             case PREFIX_HTTP:
-                downloadLinkInfo = parseHttp(split[1]);
-                break;
+                return parseHttp(split[1]);
         }
-        return downloadLinkInfo;
+        return new Object();
     }
 
 
@@ -73,6 +69,7 @@ public class DownloadLinkParser {
         ftpLinkInfo.setPort(Integer.parseInt(userInfo[1]));
     }
 
+    //TODO 还没写呢
     private HttpLinkInfo parseHttp(String arg) {
         return new HttpLinkInfo();
     }

@@ -1,6 +1,6 @@
 package orion.transfer.core.info;
 
-public class FtpLinkInfo extends DownloadLinkInfo{
+public class FtpLinkInfo extends DownloadLinkInfo {
     private String username;
     private String password;
     private String host;
@@ -46,5 +46,15 @@ public class FtpLinkInfo extends DownloadLinkInfo{
 
     public void setPort(int port) {
         this.port = port;
+    }
+
+    @Override
+    public String toString() {
+        return "FtpLinkInfo{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", host='" + host + '\'' +
+                ", port=" + port +
+                '}';
     }
 }
