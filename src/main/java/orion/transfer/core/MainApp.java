@@ -2,7 +2,6 @@ package orion.transfer.core;
 
 import orion.transfer.core.common.DownloadLinkParser;
 import orion.transfer.core.exception.DownloadLinkException;
-import orion.transfer.core.info.DownloadLinkInfo;
 import orion.transfer.core.info.FtpLinkInfo;
 import orion.transfer.core.util.FtpUtil;
 
@@ -14,7 +13,7 @@ public class MainApp {
 //        FtpUtil.download(url);
 
         DownloadLinkParser instance = DownloadLinkParser.getInstance();
-        FtpLinkInfo downloadLinkInfo = (FtpLinkInfo) instance.protocolSeparate(url);
+        FtpLinkInfo downloadLinkInfo = (FtpLinkInfo) instance.getProtocolInfo(url);
         System.out.println(downloadLinkInfo.toString());
         FtpUtil.download(downloadLinkInfo);
     }
